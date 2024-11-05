@@ -1,35 +1,79 @@
 #include "PhoneBook.hpp"
+#include "Contact.hpp"
 
-void	printbook(std::string temp){
-	std::cout << " | ";
-	if(temp.size() > 10){
-		temp.resize(9);
-		std::cout << temp;
-		std::cout << ".";
-	}
-	else
-		std::cout << temp;
+PhoneBook::PhoneBook() : currIdx(0), total(0){}
+
+std::string	truncate(std::string& str){
+	if(str.length() > 10)
+		return str.substr(0, 9) + ".";
+	return str;
 }
 
-int	main(int argc, char **argv){
+void	PhoneBook::printContacts() const
+{
+	std::cout << "   MY AWESOME PHONEBOOK\n";
+	std::cout << std::setw(10) << "INDEX" << "|"
+			  << std::setw(10) << "FIRST NAME" << "|"
+			  << std::setw(10) << "LAST NAME" << "|"
+			  << std::setw(10) << "NICK NAME" << "\n";
+	std::cout << "------------------------------------------\n";
 
-	PhoneBook	Directorio;
-	std::string	instruction;
-	int	idx;
-	Directorio.num = 0;
+	for (int i = 0; i < total; i++){
+		std::cout << std::setw(10) << i << "|"
+				  << std::setw(10) << truncate(Book[i].getFirstName()) << "|"
+				  << std::setw(10) << truncate(Book[i].getLastName()) << "|"
+				  << std::setw(10) << truncate(Book[i].getNickName()) << "\n";
+	}
+}
 
-	while(1)
-	{
-		system("clear");
-		std::cout << "instruction - ADD, SEARCH, EXIT" << std::endl;
-		std::cin >> instruction;
-		if (instruction == "ADD"){
-			system("clear");
-			std::cout << "ADD New Contact" << std::endl;
-			for (int i = Directorio.num - 1; i >= 0; i--){
-				Directorio.Cons[i + 1] = Directorio.Cons[i];
-			}
-			std::cout << "first name of contact"
-		}
+void	printContactInfo(int idx){
+	if (idx < 0 || idx >= total){
+		std::cout << "Invalid index. Try another\n";
+		return;
+	}
+	const Contact& contacto = contacto[i];
+	std::cout << "First Name: " << contacto.getFirstName() << "\n";
+	std::cout << "Last Name: " << contacto.getLastName() << "\n";
+	std::cout << "Nick Name: " << contacto.getNickName() << "\n";
+	std::cout << "Phone number: " << contacto.getPhoneNumber() << "\n";
+	std::cout << "Darkest secret: " << contacto.getSecret() << "\n";
+}
+
+void	addContact(){
+	Contact	nuevo;
+	std::string input;
+
+	do{
+		std::cout << "Enter first name: ";
+		std::getline(std::cin, input);
+		nuevo.setFirstName(input);
+	} while(input.empty());
+	do{
+		std::cout << "Enter last name: ";
+		std::getline(std::cin, input);
+		nuevo.setLastName(input);
+	} while(input.empty());
+	do{
+		std::cout << "Enter nick name: ";
+		std::getline(std::cin, input);
+		nuevo.setNickName(input);
+	} while (input.empty());
+	do{
+		std::cout << "enter phone number: ";
+		std::getline(std::cin, input);
+		nuevo.setPhoneNumber(input);
+	} while (input.empty());
+	do{
+		std::cout << "Enter secret: ";
+		std::getline(std::cin, input);
+		nuevo.setSecret(input);
+	} while(input.empty());
+
+	if (nuevo.isComplete()){
+		contactos[currIdx] = nuevo;
+		currIdx = (currIdx + 1) % 8;
+		if (total < 8)
+			total++;
+		std::cout << "Contact saved. \n";
 	}
 }

@@ -4,28 +4,22 @@
 # include <iostream>
 # include <iomanip>
 # include <string>
-
-class Contact
-{
-	public:
-	std::string	First_name;
-	std::string	Last_name;
-	std::string	Nick_name;
-	std::string	phone;
-	std::string	secret;
-
-	void	display(void){
-		std::cout << First_name;
-		std::cout << " : ";
-		std::cout << phone << std::endl;
-	}
-};
+# include "Contact.hpp"
 
 class PhoneBook
 {
+	private:
+	Contact contactos[8];
+	int	currIdx;
+	int	total;
+
 	public:
-	Contact Book[8];
-	int		idx;
+	PhoneBook();
+	void	printBook(std::string temp);
+	std::string	truncate(std::string& str);
+	void	printContacts() const;
+	void	printContactInfo(int idx);
+	void	addContact();
 };
 
 #endif
