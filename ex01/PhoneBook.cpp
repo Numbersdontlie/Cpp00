@@ -6,7 +6,7 @@
 /*   By: luifer <luifer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:39:08 by luifer            #+#    #+#             */
-/*   Updated: 2024/11/06 16:32:30 by luifer           ###   ########.fr       */
+/*   Updated: 2024/11/06 22:59:20 by luifer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Contact.hpp"
 
 //Function to print only the first 10 characters of a string
-std::string	truncate(const std::string& str) {
+std::string	PhoneBook::truncate(const std::string& str) const{
 	if(str.length() > 10)
 		return str.substr(0, 9) + ".";
 	return str;
