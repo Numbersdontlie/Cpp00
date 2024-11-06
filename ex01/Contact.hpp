@@ -1,38 +1,48 @@
-#ifndef CONTACT_HPP
-#define CONTACT_HPP
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luifer <luifer@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/06 11:38:48 by luifer            #+#    #+#             */
+/*   Updated: 2024/11/06 12:06:13 by luifer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include <iostream>
-# include <iomanip>
-# include <string>
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+#define BLUE "\e[1;94m"
+#define RESET "\033[0m"
 
 class Contact
 {
-	private:
 	std::string	firstName;
 	std::string	lastName;
 	std::string	nickName;
 	std::string	phone;
 	std::string	secret;
 
-    public:
-    int idx;
-    //Set and Get to access private attributes from outside the class
-	void    setFirstName(std::string str) {firstName = str;}
-    void    setLastName(std::string str) {lastName = str;}
-    void    setNickName(std::string str) {nickName = str;}
-    void    setPhoneNumber(std::string str) {phone = str;}
-    void    setSecret(std::string str) {secret = str;}
+	public:
+		void setFirstName(std::string);
+		void setLastName(std::string);
+		void setNickName(std::string);
+		void setPhoneNumber(std::string);
+		void setSecret(std::string);
 
-    std::string getFirstName() {return (firstName);}
-    std::string getLastName() {return (lastName);}
-    std::string getNickName() {return (nickName);}
-    std::string getPhone() {return (phone);}
-    std::string getSecret() {return (secret);}
+		std::string getFirstName();
+		std::string getLastName();
+		std::string getNickName();
+		std::string getPhoneNumber();
+		std::string getSecret();
 
-    bool isComplete(){
-	return (!firstName.empty() && !lastName.empty() && !nickName.empty() &&
-			!phone.empty() && !secret.empty());
-    }
+		bool isComplete();
+		void displayContactInfo();
 };
 
 #endif

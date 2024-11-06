@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luifer <luifer@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/06 11:39:08 by luifer            #+#    #+#             */
+/*   Updated: 2024/11/06 14:26:17 by luifer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
 
-PhoneBook::PhoneBook() : currIdx(0), total(0){}
-
+//Function to print only the first 10 characters of a string
 std::string	truncate(std::string& str){
 	if(str.length() > 10)
 		return str.substr(0, 9) + ".";
 	return str;
 }
 
-void	PhoneBook::printContacts() const
+//Function to print all the contacts on the PhoneBook
+void	PhoneBook::printAllContacts()
 {
 	std::cout << "   MY AWESOME PHONEBOOK\n";
 	std::cout << std::setw(10) << "INDEX" << "|"
@@ -18,30 +30,27 @@ void	PhoneBook::printContacts() const
 			  << std::setw(10) << "NICK NAME" << "\n";
 	std::cout << "------------------------------------------\n";
 
-	for (int i = 0; i < total; i++){
-		std::cout << std::setw(10) << i << "|"
-				  << std::setw(10) << truncate(Book[i].getFirstName()) << "|"
-				  << std::setw(10) << truncate(Book[i].getLastName()) << "|"
-				  << std::setw(10) << truncate(Book[i].getNickName()) << "\n";
+	for (int i = 0; i < 8; i++){
+		if (contactos[i].getFirstName().empty())
+			break;
+		std::cout << BLUE << std::setw(10) << std::right << i + 1 << "|"
+		std::cout << std::setw(10) << std::right << truncate(contactos[i].getFirstName()) << "|"
+		std::cout << std::setw(10) << std::right << truncate(contactos[i].getLastName()) << "|"
+		std::cout << std::setw(10) << std::right << truncate(contactos[i].getNickName()) << RESET << "\n";
 	}
 }
 
-void	printContactInfo(int idx){
-	if (idx < 0 || idx >= total){
-		std::cout << "Invalid index. Try another\n";
-		return;
-	}
-	const Contact& contacto = contacto[i];
-	std::cout << "First Name: " << contacto.getFirstName() << "\n";
-	std::cout << "Last Name: " << contacto.getLastName() << "\n";
-	std::cout << "Nick Name: " << contacto.getNickName() << "\n";
-	std::cout << "Phone number: " << contacto.getPhoneNumber() << "\n";
-	std::cout << "Darkest secret: " << contacto.getSecret() << "\n";
+//Function to print the information of a specific contact
+void	printOneContact(int idx){
+	contactos[idx].displayContactInfo();
 }
 
-void	addContact(){
+//Function to add a new contact. It will check 
+void	addContact(int idx){
 	Contact	nuevo;
 	std::string input;
+
+	//Include if statement to check when the book is full and need to delete the 1st
 
 	do{
 		std::cout << "Enter first name: ";
@@ -70,10 +79,6 @@ void	addContact(){
 	} while(input.empty());
 
 	if (nuevo.isComplete()){
-		contactos[currIdx] = nuevo;
-		currIdx = (currIdx + 1) % 8;
-		if (total < 8)
-			total++;
-		std::cout << "Contact saved. \n";
+		contactos[idx] = nuevo;
 	}
 }

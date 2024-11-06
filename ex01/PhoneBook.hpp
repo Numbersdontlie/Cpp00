@@ -6,6 +6,9 @@
 # include <string>
 # include "Contact.hpp"
 
+#define BLUE "\e[1;94m"
+#define RESET "\033[0m"
+
 class PhoneBook
 {
 	private:
