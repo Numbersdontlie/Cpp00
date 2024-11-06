@@ -6,7 +6,7 @@
 /*   By: luifer <luifer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:38:48 by luifer            #+#    #+#             */
-/*   Updated: 2024/11/06 12:06:13 by luifer           ###   ########.fr       */
+/*   Updated: 2024/11/06 16:28:00 by luifer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class Contact
 		std::string getFirstName();
 		std::string getLastName();
 		std::string getNickName();
-		std::string getPhoneNumber();
+		std::string getPhone();
 		std::string getSecret();
 
 		bool isComplete();

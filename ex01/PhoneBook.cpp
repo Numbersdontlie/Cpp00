@@ -6,7 +6,7 @@
 /*   By: luifer <luifer@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:39:08 by luifer            #+#    #+#             */
-/*   Updated: 2024/11/06 14:26:17 by luifer           ###   ########.fr       */
+/*   Updated: 2024/11/06 16:32:30 by luifer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Contact.hpp"
 
 //Function to print only the first 10 characters of a string
-std::string	truncate(std::string& str){
+std::string	truncate(const std::string& str) {
 	if(str.length() > 10)
 		return str.substr(0, 9) + ".";
 	return str;
@@ -33,20 +33,20 @@ void	PhoneBook::printAllContacts()
 	for (int i = 0; i < 8; i++){
 		if (contactos[i].getFirstName().empty())
 			break;
-		std::cout << BLUE << std::setw(10) << std::right << i + 1 << "|"
-		std::cout << std::setw(10) << std::right << truncate(contactos[i].getFirstName()) << "|"
-		std::cout << std::setw(10) << std::right << truncate(contactos[i].getLastName()) << "|"
+		std::cout << BLUE << std::setw(10) << std::right << i + 1 << "|";
+		std::cout << std::setw(10) << std::right << truncate(contactos[i].getFirstName()) << "|";
+		std::cout << std::setw(10) << std::right << truncate(contactos[i].getLastName()) << "|";
 		std::cout << std::setw(10) << std::right << truncate(contactos[i].getNickName()) << RESET << "\n";
 	}
 }
 
 //Function to print the information of a specific contact
-void	printOneContact(int idx){
+void	PhoneBook::printOneContact(int idx){
 	contactos[idx].displayContactInfo();
 }
 
 //Function to add a new contact. It will check 
-void	addContact(int idx){
+void	PhoneBook::addContact(int idx){
 	Contact	nuevo;
 	std::string input;
 

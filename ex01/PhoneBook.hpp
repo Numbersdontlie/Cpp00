@@ -7,6 +7,7 @@
 # include "Contact.hpp"
 
 #define BLUE "\e[1;94m"
+#define RED "\e[1;91m"
 #define RESET "\033[0m"
 
 class PhoneBook
@@ -17,12 +18,10 @@ class PhoneBook
 	int	total;
 
 	public:
-	PhoneBook();
-	void	printBook(std::string temp);
-	std::string	truncate(std::string& str);
-	void	printContacts() const;
-	void	printContactInfo(int idx);
-	void	addContact();
+	std::string	truncate(const std::string& str) const;
+	void	printAllContacts();
+	void	printOneContact(int idx);
+	void	addContact(int idx);
 };
 
 #endif
