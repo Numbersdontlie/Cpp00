@@ -14,8 +14,6 @@ class PhoneBook
 {
 	private:
 	Contact contactos[8];
-	int	currIdx;
-	int	total;
 
 	public:
 	std::string	truncate(const std::string& str) const;

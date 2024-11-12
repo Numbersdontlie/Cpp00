@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luifer <luifer@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lperez-h <lperez-h@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 23:40:57 by luifer            #+#    #+#             */
-/*   Updated: 2024/11/07 16:11:25 by luifer           ###   ########.fr       */
+/*   Updated: 2024/11/12 12:05:10 by lperez-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	Account::displayStatus(void) const{
 
 void	Account::makeDeposit(int deposit){
 	Account::_displayTimestamp();
-	std::cout << " index:" << Account::_accountIndex << ";p_amount:" << Account::_amount << std::cout << ";deposits:" << deposit;
+	std::cout << " index:" << Account::_accountIndex << ";p_amount:" << Account::_amount << ";deposits:" << deposit;
 	Account::_amount += deposit;
 	Account::_totalAmount += deposit;
 	Account::_totalNbDeposits++;
